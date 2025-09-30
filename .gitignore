@@ -25,6 +25,16 @@ DerivedData/
 .DS_Store
 Thumbs.db
 
-# Env
+# Env & Secrets
 *.env
 .env.*
+lib/secrets.dart
+firebase_options.dart
+
+# Firebase Config (will be provided separately)
+android/app/google-services.json
+ios/Runner/GoogleService-Info.plist
+
+# Generated files
+**/*.g.dart
+**/*.freezed.dart
