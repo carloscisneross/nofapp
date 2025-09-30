@@ -16,7 +16,9 @@ void main() async {
   
   runApp(
     ProviderScope(
-      child: NofApp(),
+      child: AppLifecycleWrapper(
+        child: NofApp(),
+      ),
     ),
   );
 }
