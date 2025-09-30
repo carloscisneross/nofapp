@@ -1,0 +1,30 @@
+# Flutter/Dart/Pub
+.dart_tool/
+.packages
+.pub-cache/
+build/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/Flutter/Generated.xcconfig
+android/.gradle/
+android/app/debug/
+android/app/profile/
+android/app/release/
+
+# Xcode
+ios/Runner.xcodeproj/project.xcworkspace/
+ios/Runner.xcworkspace/
+xcuserdata/
+DerivedData/
+*.xcuserstate
+
+# VS Code
+.vscode/
+
+# Mac/Windows
+.DS_Store
+Thumbs.db
+
+# Env
+*.env
+.env.*

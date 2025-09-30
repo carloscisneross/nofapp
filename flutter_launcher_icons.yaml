@@ -1,0 +1,14 @@
+# flutter_launcher_icons configuration for nofApp
+flutter_launcher_icons:
+  android: true
+  ios: true
+
+  image_path_android: /mnt/data/nofapp_assets/assets/icons/android/android light mode.png
+  image_path_ios: /mnt/data/nofapp_assets/assets/icons/ios/ios light mode.png
+
+  adaptive_icon_background: "#111111"
+  adaptive_icon_foreground: /mnt/data/nofapp_assets/assets/icons/android/android light mode.png
+
+# iOS (Tinted/Glass) – add the following manually in Xcode if your toolchain doesn't support it yet:
+# - Tinted (monochrome): /mnt/data/nofapp_assets/assets/icons/ios/ios tinted mode.png
+# - Glass / Liquid:      /mnt/data/nofapp_assets/assets/icons/ios/ios glass mode.png
