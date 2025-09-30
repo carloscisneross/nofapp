@@ -6,6 +6,7 @@ import 'app_theme.dart';
 import 'app_router.dart';
 import 'firebase/firebase_bootstrap.dart';
 import 'core/providers.dart';
+import 'core/app_lifecycle.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
