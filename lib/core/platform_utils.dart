@@ -4,4 +4,123 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
-/// Platform-specific utilities and optimizations\nclass PlatformUtils {\n  /// Check if running on Android\n  static bool get isAndroid => !kIsWeb && Platform.isAndroid;\n  \n  /// Check if running on iOS\n  static bool get isIOS => !kIsWeb && Platform.isIOS;\n  \n  /// Check if running on mobile (iOS or Android)\n  static bool get isMobile => isAndroid || isIOS;\n  \n  /// Check if running on web\n  static bool get isWeb => kIsWeb;\n  \n  /// Get platform-appropriate haptic feedback\n  static void hapticFeedback({HapticFeedbackType type = HapticFeedbackType.lightImpact}) {\n    if (isMobile) {\n      switch (type) {\n        case HapticFeedbackType.lightImpact:\n          HapticFeedback.lightImpact();\n          break;\n        case HapticFeedbackType.mediumImpact:\n          HapticFeedback.mediumImpact();\n          break;\n        case HapticFeedbackType.heavyImpact:\n          HapticFeedback.heavyImpact();\n          break;\n        case HapticFeedbackType.selectionClick:\n          HapticFeedback.selectionClick();\n          break;\n      }\n    }\n  }\n  \n  /// Get platform-appropriate animation duration\n  static Duration getAnimationDuration({bool isQuick = false}) {\n    if (isIOS) {\n      return isQuick ? const Duration(milliseconds: 200) : const Duration(milliseconds: 300);\n    } else {\n      // Android Material Design timing\n      return isQuick ? const Duration(milliseconds: 150) : const Duration(milliseconds: 250);\n    }\n  }\n  \n  /// Check if device supports biometrics (placeholder - requires local_auth package)\n  static Future<bool> supportsBiometrics() async {\n    // This would require adding local_auth package\n    // For now, return false as a safe default\n    return false;\n  }\n  \n  /// Get safe area padding for platform\n  static EdgeInsets getSafeAreaPadding(BuildContext context) {\n    return MediaQuery.of(context).padding;\n  }\n  \n  /// Platform-specific keyboard handling\n  static void hideKeyboard() {\n    SystemChannels.textInput.invokeMethod('TextInput.hide');\n  }\n  \n  /// Show platform-appropriate loading indicator\n  static Widget getPlatformLoadingIndicator({double? size, Color? color}) {\n    if (isIOS) {\n      return SizedBox(\n        width: size ?? 20,\n        height: size ?? 20,\n        child: const CircularProgressIndicator.adaptive(\n          strokeWidth: 2,\n        ),\n      );\n    } else {\n      return SizedBox(\n        width: size ?? 24,\n        height: size ?? 24,\n        child: CircularProgressIndicator(\n          strokeWidth: 2,\n          valueColor: color != null ? AlwaysStoppedAnimation<Color>(color) : null,\n        ),\n      );\n    }\n  }\n}\n\n/// Platform-specific constants and configurations\nclass PlatformConstants {\n  /// Minimum tap target size for accessibility\n  static const double minTapTargetSize = 44.0;\n  \n  /// Standard padding values\n  static const double standardPadding = 16.0;\n  static const double largePadding = 24.0;\n  static const double smallPadding = 8.0;\n  \n  /// Border radius values\n  static const double smallRadius = 8.0;\n  static const double mediumRadius = 12.0;\n  static const double largeRadius = 16.0;\n  \n  /// Animation curves\n  static const Curve defaultCurve = Curves.easeInOut;\n  static const Curve quickCurve = Curves.easeOut;\n  \n  /// Typography scale ratios\n  static const double headlineScale = 1.5;\n  static const double titleScale = 1.25;\n  static const double bodyScale = 1.0;\n  static const double captionScale = 0.85;\n}\n\n/// Enum for haptic feedback types\nenum HapticFeedbackType {\n  lightImpact,\n  mediumImpact,\n  heavyImpact,\n  selectionClick,\n}\n\n// Add the missing import for BuildContext\nimport 'package:flutter/widgets.dart';
+/// Platform-specific utilities and optimizations
+class PlatformUtils {
+  /// Check if running on Android
+  static bool get isAndroid => !kIsWeb && Platform.isAndroid;
+  
+  /// Check if running on iOS
+  static bool get isIOS => !kIsWeb && Platform.isIOS;
+  
+  /// Check if running on mobile (iOS or Android)
+  static bool get isMobile => isAndroid || isIOS;
+  
+  /// Check if running on web
+  static bool get isWeb => kIsWeb;
+  
+  /// Get platform-appropriate haptic feedback
+  static void hapticFeedback({HapticFeedbackType type = HapticFeedbackType.lightImpact}) {
+    if (isMobile) {
+      switch (type) {
+        case HapticFeedbackType.lightImpact:
+          HapticFeedback.lightImpact();
+          break;
+        case HapticFeedbackType.mediumImpact:
+          HapticFeedback.mediumImpact();
+          break;
+        case HapticFeedbackType.heavyImpact:
+          HapticFeedback.heavyImpact();
+          break;
+        case HapticFeedbackType.selectionClick:
+          HapticFeedback.selectionClick();
+          break;
+      }
+    }
+  }
+  
+  /// Get platform-appropriate animation duration
+  static Duration getAnimationDuration({bool isQuick = false}) {
+    if (isIOS) {
+      return isQuick ? const Duration(milliseconds: 200) : const Duration(milliseconds: 300);
+    } else {
+      // Android Material Design timing
+      return isQuick ? const Duration(milliseconds: 150) : const Duration(milliseconds: 250);
+    }
+  }
+  
+  /// Check if device supports biometrics (placeholder - requires local_auth package)
+  static Future<bool> supportsBiometrics() async {
+    // This would require adding local_auth package
+    // For now, return false as a safe default
+    return false;
+  }
+  
+  /// Get safe area padding for platform
+  static EdgeInsets getSafeAreaPadding(BuildContext context) {
+    return MediaQuery.of(context).padding;
+  }
+  
+  /// Platform-specific keyboard handling
+  static void hideKeyboard() {
+    SystemChannels.textInput.invokeMethod('TextInput.hide');
+  }
+  
+  /// Show platform-appropriate loading indicator
+  static Widget getPlatformLoadingIndicator({double? size, Color? color}) {
+    if (isIOS) {
+      return SizedBox(
+        width: size ?? 20,
+        height: size ?? 20,
+        child: const CircularProgressIndicator.adaptive(
+          strokeWidth: 2,
+        ),
+      );
+    } else {
+      return SizedBox(
+        width: size ?? 24,
+        height: size ?? 24,
+        child: CircularProgressIndicator(
+          strokeWidth: 2,
+          valueColor: color != null ? AlwaysStoppedAnimation<Color>(color) : null,
+        ),
+      );
+    }
+  }
+}
+
+/// Platform-specific constants and configurations
+class PlatformConstants {
+  /// Minimum tap target size for accessibility
+  static const double minTapTargetSize = 44.0;
+  
+  /// Standard padding values
+  static const double standardPadding = 16.0;
+  static const double largePadding = 24.0;
+  static const double smallPadding = 8.0;
+  
+  /// Border radius values
+  static const double smallRadius = 8.0;
+  static const double mediumRadius = 12.0;
+  static const double largeRadius = 16.0;
+  
+  /// Animation curves
+  static const Curve defaultCurve = Curves.easeInOut;
+  static const Curve quickCurve = Curves.easeOut;
+  
+  /// Typography scale ratios
+  static const double headlineScale = 1.5;
+  static const double titleScale = 1.25;
+  static const double bodyScale = 1.0;
+  static const double captionScale = 0.85;
+}
+
+/// Enum for haptic feedback types
+enum HapticFeedbackType {
+  lightImpact,
+  mediumImpact,
+  heavyImpact,
+  selectionClick,
+}
+
+// Add the missing import for BuildContext
+import 'package:flutter/widgets.dart';
