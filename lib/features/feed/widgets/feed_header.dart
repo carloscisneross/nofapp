@@ -42,30 +42,54 @@ class FeedHeader extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Current Status Row
+              // Current Status Row - matches sketch layout
               Row(
                 children: [
                   // Avatar
-                  CircleAvatar(
-                    radius: 30,
-                    backgroundImage: AssetImage(profile.avatarKey),
-                    onBackgroundImageError: (_, __) {},
-                    child: profile.avatarKey.isEmpty
-                        ? const Icon(Icons.person, size: 30)
-                        : null,
+                  Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: Theme.of(context).colorScheme.primary,
+                        width: 2,
+                      ),
+                    ),
+                    child: CircleAvatar(
+                      radius: 28,
+                      backgroundImage: AssetImage(profile.avatarKey),
+                      onBackgroundImageError: (_, __) {},
+                      child: profile.avatarKey.isEmpty
+                          ? const Icon(Icons.person, size: 28)
+                          : null,
+                    ),
                   ),
                   const SizedBox(width: 16),
                   
-                  // User info
+                  // User info with medal inline
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          profile.displayName,
-                          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
+                        Row(
+                          children: [
+                            Flexible(
+                              child: Text(
+                                profile.displayName,
+                                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            // Current Medal inline with name
+                            if (currentMedal != null)
+                              MedalWidget(
+                                medal: currentMedal,
+                                size: 24,
+                                showTooltip: true,
+                              ),
+                          ],
                         ),
                         const SizedBox(height: 4),
                         Row(
@@ -88,13 +112,6 @@ class FeedHeader extends ConsumerWidget {
                       ],
                     ),
                   ),
-                  
-                  // Current Medal
-                  if (currentMedal != null)
-                    MedalWidget(
-                      medal: currentMedal,
-                      size: 48,
-                    ),
                 ],
               ),
               
