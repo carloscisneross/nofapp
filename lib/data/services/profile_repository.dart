@@ -54,7 +54,8 @@ class ProfileRepository {
       await _firestore!
           .collection(AppConstants.usersCollection)
           .doc(profile.uid)
-          .set(profile.toFirestore());
+          .set(profile.toFirestore())
+          .timeout(_timeout);
     } catch (e) {
       throw Exception('Failed to create user profile: $e');
     }
