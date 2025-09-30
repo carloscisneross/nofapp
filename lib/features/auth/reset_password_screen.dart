@@ -26,7 +26,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
   }
 
   Future<void> _sendPasswordResetEmail() async {
-    if (!_formKey.currentValidate()) return;
+    if (!_formKey.currentState!.validate()) return;
     
     setState(() => _isLoading = true);
     
