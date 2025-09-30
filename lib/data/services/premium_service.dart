@@ -196,9 +196,11 @@ class PremiumService {
 class RevenueCatConfig {
   final String apiKey;
   final String premiumProductId;
+  final String premiumAnnualProductId;
 
   const RevenueCatConfig({
     required this.apiKey,
     required this.premiumProductId,
+    required this.premiumAnnualProductId,
   });
 }
