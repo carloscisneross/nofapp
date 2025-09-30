@@ -153,16 +153,43 @@ class PremiumService {
   }
 
   RevenueCatConfig _getRevenueCatConfig() {
-    // This will be replaced with actual keys from secrets.dart
-    const apiKey = String.fromEnvironment(
-      'REVENUECAT_API_KEY',
-      defaultValue: '', // Empty for now - will be provided later
-    );
+    // Get API keys from --dart-define or secrets.dart
+    const androidKey = String.fromEnvironment('RC_ANDROID', defaultValue: '');
+    const iosKey = String.fromEnvironment('RC_IOS', defaultValue: '');
+    
+    // Fallback to secrets.dart if available
+    String apiKey = '';
+    try {
+      // Try to get from platform-specific environment variables
+      if (Theme.of(navigatorKey.currentContext!).platform == TargetPlatform.android && androidKey.isNotEmpty) {
+        apiKey = androidKey;
+      } else if (Theme.of(navigatorKey.currentContext!).platform == TargetPlatform.iOS && iosKey.isNotEmpty) {
+        apiKey = iosKey;
+      }
+    } catch (e) {
+      // Context not available, will check secrets
+    }
+    
+    // If still empty, try secrets.dart (will be git-ignored)
+    if (apiKey.isEmpty) {
+      try {
+        apiKey = _getSecretKey();
+      } catch (e) {
+        // Secrets not available - use stub mode
+      }
+    }
     
     return RevenueCatConfig(
       apiKey: apiKey,
       premiumProductId: 'nofapp_premium_monthly',
+      premiumAnnualProductId: 'nofapp_premium_yearly',
     );
+  }
+  
+  String _getSecretKey() {
+    // This will be implemented in secrets.dart
+    // For now, return empty to use stub mode
+    return '';
   }
 
   void dispose() {
