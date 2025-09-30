@@ -55,17 +55,20 @@ class PostCard extends ConsumerWidget {
                           const SizedBox(width: 6),
                           // Author's medal (placeholder - in real implementation, 
                           // this would come from author's current medal)
-                          Container(
-                            width: 16,
-                            height: 16,
-                            decoration: BoxDecoration(
-                              color: colorScheme.primary.withValues(alpha: 0.2),
-                              shape: BoxShape.circle,
-                            ),
-                            child: Icon(
-                              Icons.emoji_events,
-                              size: 10,
-                              color: colorScheme.primary,
+                          Semantics(
+                            label: 'User medal',
+                            child: Container(
+                              width: 16,
+                              height: 16,
+                              decoration: BoxDecoration(
+                                color: colorScheme.primary.withValues(alpha: 0.2),
+                                shape: BoxShape.circle,
+                              ),
+                              child: Icon(
+                                Icons.emoji_events,
+                                size: 10,
+                                color: colorScheme.primary,
+                              ),
                             ),
                           ),
                           const SizedBox(width: 4),
