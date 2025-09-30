@@ -183,9 +183,20 @@ class PremiumService {
   }
   
   String _getSecretKey() {
-    // This will be implemented in secrets.dart
-    // For now, return empty to use stub mode
-    return '';
+    // Try to get from secrets.dart if available
+    try {
+      // This import will work when secrets.dart exists
+      // For now, we'll catch the error and return empty
+      
+      // Uncomment when lib/secrets.dart is created:
+      // import '../../secrets.dart';
+      // if (Platform.isAndroid) return Secrets.revenueCatAndroidKey;
+      // if (Platform.isIOS) return Secrets.revenueCatIosKey;
+      
+      return '';
+    } catch (e) {
+      return '';
+    }
   }
 
   void dispose() {
