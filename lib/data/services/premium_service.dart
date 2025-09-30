@@ -157,17 +157,12 @@ class PremiumService {
     const androidKey = String.fromEnvironment('RC_ANDROID', defaultValue: '');
     const iosKey = String.fromEnvironment('RC_IOS', defaultValue: '');
     
-    // Fallback to secrets.dart if available
+    // Use platform-appropriate key
     String apiKey = '';
-    try {
-      // Try to get from platform-specific environment variables
-      if (Theme.of(navigatorKey.currentContext!).platform == TargetPlatform.android && androidKey.isNotEmpty) {
-        apiKey = androidKey;
-      } else if (Theme.of(navigatorKey.currentContext!).platform == TargetPlatform.iOS && iosKey.isNotEmpty) {
-        apiKey = iosKey;
-      }
-    } catch (e) {
-      // Context not available, will check secrets
+    if (Platform.isAndroid && androidKey.isNotEmpty) {
+      apiKey = androidKey;
+    } else if (Platform.isIOS && iosKey.isNotEmpty) {
+      apiKey = iosKey;
     }
     
     // If still empty, try secrets.dart (will be git-ignored)
