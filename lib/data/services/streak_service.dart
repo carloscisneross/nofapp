@@ -1,5 +1,8 @@
+import 'dart:math' as math;
+
 import '../models/user_profile.dart';
 import '../../core/constants.dart';
+import '../../core/network_guard.dart';
 import 'profile_repository.dart';
 import 'medal_service.dart';
 
