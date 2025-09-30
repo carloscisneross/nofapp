@@ -322,13 +322,22 @@ class ProfileScreen extends ConsumerWidget {
 
   Future<void> _performCheckIn(BuildContext context, WidgetRef ref, String userId) async {
     try {
+      // Add haptic feedback for interaction
+      PlatformUtils.hapticFeedback(type: HapticFeedbackType.lightImpact);
+      
       await StreakService.instance.checkIn(userId);
+      
+      // Success haptic feedback
+      PlatformUtils.hapticFeedback(type: HapticFeedbackType.mediumImpact);
       
       // Refresh profile data
       ref.invalidate(currentUserProfileProvider);
       
       ContextGuard.showSuccess(context, 'Check-in successful! 🔥');
     } catch (e) {
+      // Error haptic feedback
+      PlatformUtils.hapticFeedback(type: HapticFeedbackType.heavyImpact);
+      
       ContextGuard.showError(context, 'Check-in failed: $e');
     }
   }
