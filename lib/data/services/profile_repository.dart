@@ -38,7 +38,8 @@ class ProfileRepository {
       final doc = await _firestore!
           .collection(AppConstants.usersCollection)
           .doc(uid)
-          .get();
+          .get()
+          .timeout(_timeout);
       
       return doc.exists ? UserProfile.fromFirestore(doc) : null;
     } catch (e) {
