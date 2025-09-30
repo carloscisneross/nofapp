@@ -42,16 +42,21 @@ class StreakWidget extends StatelessWidget {
                 ),
                 const Spacer(),
                 if (canCheckIn && onCheckIn != null)
-                  ElevatedButton(
-                    onPressed: onCheckIn,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.orange,
-                      foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
+                  Semantics(
+                    label: 'Check in to continue your streak',
+                    hint: 'Tap to record today\'s check-in',
+                    child: ElevatedButton(
+                      onPressed: onCheckIn,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.orange,
+                        foregroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        minimumSize: const Size(88, 44), // Minimum tap target size
                       ),
+                      child: const Text('Check In'),
                     ),
-                    child: const Text('Check In'),
                   )
                 else if (!canCheckIn)
                   Container(
