@@ -30,7 +30,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   }
 
   Future<void> _signInWithEmailAndPassword() async {
-    if (!_formKey.currentValidate()) return;
+    if (!_formKey.currentState!.validate()) return;
     
     setState(() => _isLoading = true);
     
