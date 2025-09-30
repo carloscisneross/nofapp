@@ -25,7 +25,7 @@ class PostCard extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Header with author info
+            // Header with author info - matches updated sketch
             Row(
               children: [
                 CircleAvatar(
@@ -41,12 +41,51 @@ class PostCard extends ConsumerWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        post.authorName,
-                        style: theme.textTheme.titleSmall?.copyWith(
-                          fontWeight: FontWeight.w600,
-                        ),
+                      Row(
+                        children: [
+                          Flexible(
+                            child: Text(
+                              post.authorName,
+                              style: theme.textTheme.titleSmall?.copyWith(
+                                fontWeight: FontWeight.w600,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          const SizedBox(width: 6),
+                          // Author's medal (placeholder - in real implementation, 
+                          // this would come from author's current medal)
+                          Container(
+                            width: 16,
+                            height: 16,
+                            decoration: BoxDecoration(
+                              color: colorScheme.primary.withValues(alpha: 0.2),
+                              shape: BoxShape.circle,
+                            ),
+                            child: Icon(
+                              Icons.emoji_events,
+                              size: 10,
+                              color: colorScheme.primary,
+                            ),
+                          ),
+                          const SizedBox(width: 4),
+                          // Author's streak indicator
+                          Icon(
+                            Icons.local_fire_department,
+                            size: 14,
+                            color: Colors.orange,
+                          ),
+                          Text(
+                            '12', // Placeholder - would come from author data
+                            style: theme.textTheme.bodySmall?.copyWith(
+                              color: Colors.orange,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 11,
+                            ),
+                          ),
+                        ],
                       ),
+                      const SizedBox(height: 2),
                       Text(
                         _formatTimestamp(post.createdAt),
                         style: theme.textTheme.bodySmall?.copyWith(
