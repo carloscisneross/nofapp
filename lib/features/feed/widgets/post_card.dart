@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import '../../../data/models/post.dart';
 import '../../../data/services/post_service.dart';
 import '../../../core/providers.dart';
+import '../../profile/widgets/medal_widget.dart';
 
 class PostCard extends ConsumerWidget {
   final Post post;
