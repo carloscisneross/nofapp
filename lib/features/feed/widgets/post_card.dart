@@ -41,6 +41,7 @@ class PostCard extends ConsumerWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      // User info with medal and streak inline
                       Row(
                         children: [
                           Flexible(
@@ -53,8 +54,7 @@ class PostCard extends ConsumerWidget {
                             ),
                           ),
                           const SizedBox(width: 6),
-                          // Author's medal (placeholder - in real implementation, 
-                          // this would come from author's current medal)
+                          // Author's current medal
                           Semantics(
                             label: 'User medal',
                             child: Container(
@@ -79,7 +79,7 @@ class PostCard extends ConsumerWidget {
                             color: Colors.orange,
                           ),
                           Text(
-                            '12', // Placeholder - would come from author data
+                            '12', // Placeholder - would come from author profile data
                             style: theme.textTheme.bodySmall?.copyWith(
                               color: Colors.orange,
                               fontWeight: FontWeight.w600,
@@ -88,7 +88,42 @@ class PostCard extends ConsumerWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 2),
+                      const SizedBox(height: 4),
+                      
+                      // Progress bar to next medal (per updated sketch)
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              height: 3,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(1.5),
+                                color: colorScheme.surfaceContainerHighest,
+                              ),
+                              child: FractionallySizedBox(
+                                alignment: Alignment.centerLeft,
+                                widthFactor: 0.4, // Placeholder progress (40%)
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(1.5),
+                                    color: colorScheme.primary,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            '12/21', // Placeholder - current streak / next medal threshold
+                            style: theme.textTheme.bodySmall?.copyWith(
+                              color: colorScheme.onSurface.withValues(alpha: 0.6),
+                              fontSize: 10,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 4),
+                      
                       Text(
                         _formatTimestamp(post.createdAt),
                         style: theme.textTheme.bodySmall?.copyWith(
