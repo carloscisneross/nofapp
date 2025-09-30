@@ -160,5 +160,3 @@ class StreakService {
     return previous;
   }
 }
-
-import 'dart:math' as math;
