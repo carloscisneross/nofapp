@@ -9,18 +9,22 @@ class FirebaseBootstrap {
     try {
       // Try to import firebase_options.dart
       // Will be provided as: lib/firebase/firebase_options.dart
-      try {
-      // await Firebase.initializeApp(
-      //   options: DefaultFirebaseOptions.currentPlatform,
-      // );
-      
-      // Placeholder initialization - will be replaced when firebase_options.dart exists
-      if (kDebugMode) {
-        print('Firebase initialization skipped - firebase_options.dart not found');
-        print('This is expected during initial development');
-      }
-      
-      _isInitialized = false; // Will be true when Firebase is properly configured
+        // Import firebase_options when available
+        // ignore: unused_import
+        final options = await _getFirebaseOptions();
+        await Firebase.initializeApp(options: options);
+        _isInitialized = true;
+        
+        if (kDebugMode) {
+          print('Firebase initialized successfully');
+        }
+      } catch (e) {
+        // firebase_options.dart not found - use stub mode
+        if (kDebugMode) {
+          print('Firebase initialization skipped - firebase_options.dart not found');
+          print('This is expected during initial development');
+        }
+        _isInitialized = false;
     } catch (e) {
       if (kDebugMode) {
         print('Firebase initialization failed: $e');
