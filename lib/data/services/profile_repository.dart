@@ -8,6 +8,8 @@ class ProfileRepository {
   static ProfileRepository? _instance;
   static ProfileRepository get instance => _instance ??= ProfileRepository._();
   ProfileRepository._();
+  
+  static const Duration _timeout = Duration(seconds: 10);
 
   FirebaseFirestore? get _firestore {
     return FirebaseBootstrap.isFirebaseReady ? FirebaseFirestore.instance : null;
