@@ -158,5 +158,4 @@ class StreakService {
   }
 }
 
-// Need to import dart:math
 import 'dart:math' as math;
