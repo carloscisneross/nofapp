@@ -15,38 +15,44 @@ class StreakService {
   final _medalService = MedalService.instance;
 
   Future<StreakData> checkIn(String userId) async {
-    final profile = await _profileRepository.getUserProfile(userId);
-    if (profile == null) {
-      throw Exception('User profile not found');
-    }
+    return NetworkGuard.executeWithSmartRetry(
+      operation: () async {
+        final profile = await _profileRepository.getUserProfile(userId);
+        if (profile == null) {
+          throw Exception('User profile not found');
+        }
 
-    final now = DateTime.now();
-    final today = DateTime(now.year, now.month, now.day);
-    final lastCheckIn = profile.streak.lastCheckInAt;
-    
-    // Check if already checked in today
-    if (lastCheckIn != null) {
-      final lastCheckInDate = DateTime(
-        lastCheckIn.year,
-        lastCheckIn.month,
-        lastCheckIn.day,
-      );
-      
-      if (lastCheckInDate.isAtSameMomentAs(today)) {
-        throw Exception('Already checked in today');
-      }
-    }
+        final now = DateTime.now();
+        final today = DateTime(now.year, now.month, now.day);
+        final lastCheckIn = profile.streak.lastCheckInAt;
+        
+        // Check if already checked in today
+        if (lastCheckIn != null) {
+          final lastCheckInDate = DateTime(
+            lastCheckIn.year,
+            lastCheckIn.month,
+            lastCheckIn.day,
+          );
+          
+          if (lastCheckInDate.isAtSameMomentAs(today)) {
+            throw Exception('Already checked in today');
+          }
+        }
 
-    // Calculate new streak
-    final newStreak = _calculateNewStreak(profile.streak, now);
-    
-    // Update streak in profile
-    await _profileRepository.updateStreak(userId, newStreak);
-    
-    // Check for new medals
-    await _checkForNewMedals(userId, newStreak.current);
-    
-    return newStreak;
+        // Calculate new streak
+        final newStreak = _calculateNewStreak(profile.streak, now);
+        
+        // Update streak in profile
+        await _profileRepository.updateStreak(userId, newStreak);
+        
+        // Check for new medals
+        await _checkForNewMedals(userId, newStreak.current);
+        
+        return newStreak;
+      },
+      operationName: 'check-in',
+      maxRetries: 2, // Limit retries for check-in to avoid double-counting
+    );
   }
 
   StreakData _calculateNewStreak(StreakData currentStreak, DateTime now) {
