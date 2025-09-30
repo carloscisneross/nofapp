@@ -37,4 +37,16 @@ class FirebaseBootstrap {
   static void markAsInitialized() {
     _isInitialized = true;
   }
+  
+  /// Dynamically import firebase_options.dart when available
+  static Future<dynamic> _getFirebaseOptions() async {
+    // This will work when firebase_options.dart is provided
+    try {
+      // Dynamic import to avoid compile-time dependency
+      final module = await import('../firebase_options.dart');
+      return module.DefaultFirebaseOptions.currentPlatform;
+    } catch (e) {
+      throw Exception('firebase_options.dart not found. Please add Firebase configuration files.');
+    }
+  }
 }
