@@ -38,3 +38,7 @@ ios/Runner/GoogleService-Info.plist
 # Generated files
 **/*.g.dart
 **/*.freezed.dart
+-e 
+# Environment files
+*.env
+*.env.*
