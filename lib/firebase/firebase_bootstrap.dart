@@ -7,11 +7,9 @@ class FirebaseBootstrap {
   
   static Future<void> initialize() async {
     try {
-      // Try to import firebase_options.dart - will be provided later
-      // For now, we'll catch the error and initialize without Firebase
-      
-      // Uncomment when firebase_options.dart is provided:
-      // import '../firebase_options.dart';
+      // Try to import firebase_options.dart
+      // Will be provided as: lib/firebase/firebase_options.dart
+      try {
       // await Firebase.initializeApp(
       //   options: DefaultFirebaseOptions.currentPlatform,
       // );
