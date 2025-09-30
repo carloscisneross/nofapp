@@ -326,23 +326,9 @@ class ProfileScreen extends ConsumerWidget {
       // Refresh profile data
       ref.invalidate(currentUserProfileProvider);
       
-      if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Check-in successful! 🔥'),
-            backgroundColor: Colors.green,
-          ),
-        );
-      }
+      ContextGuard.showSuccess(context, 'Check-in successful! 🔥');
     } catch (e) {
-      if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Check-in failed: $e'),
-            backgroundColor: Theme.of(context).colorScheme.error,
-          ),
-        );
-      }
+      ContextGuard.showError(context, 'Check-in failed: $e');
     }
   }
 }
