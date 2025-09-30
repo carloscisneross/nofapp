@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../core/constants.dart';
 import '../../core/providers.dart';
+import '../../core/context_guard.dart';
 import '../../data/services/streak_service.dart';
 import 'widgets/avatar_picker_modal.dart';
 import 'widgets/medal_widget.dart';
