@@ -152,7 +152,7 @@ class FeedHeader extends ConsumerWidget {
               ],
               
               // Next medals preview
-              if (personalMedals.isNotEmpty) ..[
+              if (personalMedals.isNotEmpty) ...[
                 Text(
                   'Next Medals',
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
