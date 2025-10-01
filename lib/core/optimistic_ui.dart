@@ -129,15 +129,6 @@ class OptimisticUIProvider extends InheritedWidget {
 
   @override
   bool updateShouldNotify(OptimisticUIProvider oldWidget) => false;
-  
-  @override
-  void dispose() {
-    for (final manager in _managers.values) {
-      manager.dispose();
-    }
-    _managers.clear();
-    super.dispose();
-  }
 }
 
 /// Example optimistic UI patterns
