@@ -81,7 +81,7 @@ class PremiumService {
     }
     
     try {
-      final purchaserInfo = await Purchases.purchasePackage(package);
+      final purchaserInfo = await Purchases.purchase(package: package);
       _currentCustomerInfo = purchaserInfo.customerInfo;
       _premiumStatusController.add(isPremium);
       return isPremium;
