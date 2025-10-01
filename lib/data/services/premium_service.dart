@@ -34,8 +34,7 @@ class PremiumService {
       await Purchases.setLogLevel(kDebugMode ? LogLevel.debug : LogLevel.info);
       
       final configuration = PurchasesConfiguration(config.apiKey)
-        ..appUserID = null // Let RevenueCat generate anonymous ID
-        ..observerMode = false;
+        ..appUserID = null; // Let RevenueCat generate anonymous ID
         
       await Purchases.configure(configuration);
       
