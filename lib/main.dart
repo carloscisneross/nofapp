@@ -5,14 +5,18 @@ import 'package:firebase_core/firebase_core.dart';
 import 'app_theme.dart';
 import 'app_router.dart';
 import 'firebase/firebase_bootstrap.dart';
+import 'data/services/premium_service.dart';
 import 'core/providers.dart';
 import 'core/app_lifecycle.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
-  // Initialize Firebase with guarded initialization
+  // Initialize Firebase
   await FirebaseBootstrap.initialize();
+  
+  // Initialize RevenueCat for premium features
+  await PremiumService.instance.initialize();
   
   runApp(
     ProviderScope(
