@@ -176,7 +176,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
                           )
                         : const Text('Send Reset Link'),
                   ),
-                ] else ..[
+                ] else ...[
                   // Success actions
                   ElevatedButton(
                     onPressed: () {
