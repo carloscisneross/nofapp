@@ -15,7 +15,7 @@ class PremiumService {
   Stream<bool> get premiumStatusStream => _premiumStatusController.stream;
 
   bool get isInitialized => _isInitialized;
-  bool get isPremium => _currentCustomerInfo?.entitlements.active.isNotEmpty ?? false;
+  bool get isPremium => _currentCustomerInfo?.entitlements.active.containsKey('premium') ?? false;
   CustomerInfo? get currentCustomerInfo => _currentCustomerInfo;
 
   Future<void> initialize() async {
