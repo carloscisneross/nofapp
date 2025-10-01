@@ -154,15 +154,18 @@ class PremiumService {
   }
 
   RevenueCatConfig _getRevenueCatConfig() {
-    // Get iOS SDK key from --dart-define=RC_IOS_SDK_KEY
+    // Get SDK keys from --dart-define
     const iosSdkKey = String.fromEnvironment('RC_IOS_SDK_KEY', defaultValue: '');
+    const androidSdkKey = String.fromEnvironment('RC_ANDROID_SDK_KEY', defaultValue: '');
     
     // Use platform-appropriate key
     String apiKey = '';
     if (Platform.isIOS && iosSdkKey.isNotEmpty) {
       apiKey = iosSdkKey;
+    } else if (Platform.isAndroid && androidSdkKey.isNotEmpty) {
+      apiKey = androidSdkKey;
     }
-    // Android will be configured later after Play Console upload
+    // Android products will be configured after Play Console upload
     
     return RevenueCatConfig(
       apiKey: apiKey,
