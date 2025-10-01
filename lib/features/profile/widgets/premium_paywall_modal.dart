@@ -102,7 +102,7 @@ class _PremiumPaywallModalState extends ConsumerState<PremiumPaywallModal> {
                   const SizedBox(height: 24),
                   
                   // Title
-                  if (widget.feature != null) ..[
+                  if (widget.feature != null) ...[
                     Text(
                       'Unlock ${widget.feature}',
                       style: theme.textTheme.headlineSmall?.copyWith(
