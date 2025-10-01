@@ -140,7 +140,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
                 ),
                 const SizedBox(height: 48),
                 
-                if (!_emailSent) ..[
+                if (!_emailSent) ...[
                   // Email field
                   TextFormField(
                     controller: _emailController,
