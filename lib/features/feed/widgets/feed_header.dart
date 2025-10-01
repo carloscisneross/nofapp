@@ -118,7 +118,7 @@ class FeedHeader extends ConsumerWidget {
               const SizedBox(height: 20),
               
               // Progress to next medal
-              if (nextMedal != null) ..[
+              if (nextMedal != null) ...[
                 Text(
                   'Progress to ${nextMedal.name}',
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
