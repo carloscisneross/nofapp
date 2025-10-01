@@ -220,7 +220,7 @@ class _ProfileSetupScreenState extends ConsumerState<ProfileSetupScreen> {
                 const SizedBox(height: 16),
                 
                 // Skip for now (guest users)
-                if (widget.email.contains('guest')) ..[
+                if (widget.email.contains('guest')) ...[
                   TextButton(
                     onPressed: _isLoading ? null : () {
                       // Use default values for guest
