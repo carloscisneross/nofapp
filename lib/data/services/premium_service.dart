@@ -181,10 +181,12 @@ class RevenueCatConfig {
   final String apiKey;
   final String premiumProductId;
   final String premiumAnnualProductId;
+  final String entitlementId;
 
   const RevenueCatConfig({
     required this.apiKey,
     required this.premiumProductId,
     required this.premiumAnnualProductId,
+    required this.entitlementId,
   });
 }
