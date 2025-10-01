@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 /// Optimized image widget with caching and error handling
 class OptimizedImage extends StatelessWidget {
