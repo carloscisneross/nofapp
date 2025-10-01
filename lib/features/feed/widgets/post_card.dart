@@ -351,7 +351,7 @@ class _ReactionButton extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(emoji, style: const TextStyle(fontSize: 16)),
-          if (count > 0) ..[
+          if (count > 0) ...[
             const SizedBox(width: 4),
             Text(
               count.toString(),
