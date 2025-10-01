@@ -15,7 +15,7 @@ import 'features/profile/profile_screen.dart';
 import 'features/settings/settings_screen.dart';
 
 class AppRouter {
-  static GoRouter createRouter(WidgetRef ref) {
+  static GoRouter createRouter(Ref ref) {
     return GoRouter(
       initialLocation: AppConstants.onboardingRoute,
       redirect: (context, state) {
