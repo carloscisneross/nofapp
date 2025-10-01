@@ -154,49 +154,22 @@ class PremiumService {
   }
 
   RevenueCatConfig _getRevenueCatConfig() {
-    // Get API keys from --dart-define or secrets.dart
-    const androidKey = String.fromEnvironment('RC_ANDROID', defaultValue: '');
-    const iosKey = String.fromEnvironment('RC_IOS', defaultValue: '');
+    // Get iOS SDK key from --dart-define=RC_IOS_SDK_KEY
+    const iosSdkKey = String.fromEnvironment('RC_IOS_SDK_KEY', defaultValue: '');
     
     // Use platform-appropriate key
     String apiKey = '';
-    if (Platform.isAndroid && androidKey.isNotEmpty) {
-      apiKey = androidKey;
-    } else if (Platform.isIOS && iosKey.isNotEmpty) {
-      apiKey = iosKey;
+    if (Platform.isIOS && iosSdkKey.isNotEmpty) {
+      apiKey = iosSdkKey;
     }
-    
-    // If still empty, try secrets.dart (will be git-ignored)
-    if (apiKey.isEmpty) {
-      try {
-        apiKey = _getSecretKey();
-      } catch (e) {
-        // Secrets not available - use stub mode
-      }
-    }
+    // Android will be configured later after Play Console upload
     
     return RevenueCatConfig(
       apiKey: apiKey,
       premiumProductId: 'nofapp_premium_monthly',
       premiumAnnualProductId: 'nofapp_premium_yearly',
+      entitlementId: 'premium',
     );
-  }
-  
-  String _getSecretKey() {
-    // Try to get from secrets.dart if available
-    try {
-      // This import will work when secrets.dart exists
-      // For now, we'll catch the error and return empty
-      
-      // Uncomment when lib/secrets.dart is created:
-      // import '../../secrets.dart';
-      // if (Platform.isAndroid) return Secrets.revenueCatAndroidKey;
-      // if (Platform.isIOS) return Secrets.revenueCatIosKey;
-      
-      return '';
-    } catch (e) {
-      return '';
-    }
   }
 
   void dispose() {
