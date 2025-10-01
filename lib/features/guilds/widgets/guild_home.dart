@@ -105,7 +105,7 @@ class GuildHome extends ConsumerWidget {
                   ),
                   
                   // Description
-                  if (guild.description.isNotEmpty) ..[
+                  if (guild.description.isNotEmpty) ...[
                     const SizedBox(height: 16),
                     Text(
                       guild.description,
