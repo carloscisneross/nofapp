@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 /// Utility for safely using BuildContext in async operations
 /// Helps avoid use_build_context_synchronously lints
