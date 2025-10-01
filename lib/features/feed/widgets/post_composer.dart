@@ -137,7 +137,7 @@ class _PostComposerState extends ConsumerState<PostComposer> {
                 ),
                 
                 // Expanded composer
-                if (_isExpanded) ..[
+                if (_isExpanded) ...[
                   const SizedBox(height: 12),
                   TextField(
                     controller: _textController,
