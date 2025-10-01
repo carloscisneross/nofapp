@@ -47,7 +47,7 @@ class OnboardingScreen extends ConsumerWidget {
                     ],
                   ),
                   child: Icon(
-                    Icons.sword, // Sword icon representing the new brand
+                    Icons.military_tech, // Military tech icon representing achievement
                     size: 64,
                     color: colorScheme.onPrimary,
                   ),
