@@ -42,7 +42,7 @@ class FeedScreen extends ConsumerWidget {
             ),
             
             // Post Composer
-            if (currentUser != null) ..[
+            if (currentUser != null) ...[
               const SliverToBoxAdapter(
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16),
